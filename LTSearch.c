@@ -60,7 +60,7 @@ int search_Bin(SSTable sst, KeyType key) {
 
 // 二分查找递归实现
 int search_Bin_Rec(SSTable sst, KeyType key, int low, int high) {
-  while (low > high) {
+  if (low > high) {
     return 0;
   }
   int mid = (low + high) / 2;
@@ -68,9 +68,9 @@ int search_Bin_Rec(SSTable sst, KeyType key, int low, int high) {
     return mid;
   }
   if (sst.data[mid].key > key) {
-    search_Bin_Rec(sst, key, low, mid - 1);
+    return search_Bin_Rec(sst, key, low, mid - 1);
   } else {
-    search_Bin_Rec(sst, key, mid + 1, high);
+    return search_Bin_Rec(sst, key, mid + 1, high);
   }
 }
 
